@@ -5,3 +5,7 @@ dist
 .DS_Store
 .vercel
 work/
+
+# Tencent Cloud EdgeOne
+.edgeone/*
+.tef_dist/*
