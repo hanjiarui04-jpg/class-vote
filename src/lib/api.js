@@ -3,11 +3,17 @@ import { hasSupabaseConfig, supabase } from './supabase'
 export const isDemoMode = !hasSupabaseConfig
 
 const demoOfficers = [
-  { id: '01', name: '林晓晴', role: '班长' },
-  { id: '02', name: '周予安', role: '学习委员' },
-  { id: '03', name: '陈嘉禾', role: '团支书' },
-  { id: '04', name: '沈知夏', role: '生活委员' },
-  { id: '05', name: '许明朗', role: '体育委员' },
+  { id: '01', name: '张鑫名', role: '班长' },
+  { id: '02', name: '李珂', role: '团支书' },
+  { id: '03', name: '韩家锐', role: '学习委员' },
+  { id: '04', name: '刘广运', role: '组织委员' },
+  { id: '05', name: '赛依浦丁', role: '体育委员' },
+  { id: '06', name: '李超', role: '宣传委员' },
+  { id: '07', name: '祖拉雅提', role: '生活委员' },
+  { id: '08', name: '何晨', role: '信息委员' },
+  { id: '09', name: '热依莱', role: '文艺委员' },
+  { id: '10', name: '帕热达', role: '心理委员' },
+  { id: '11', name: '王俊杰', role: '心理委员' },
 ]
 
 const demoComments = [
@@ -19,7 +25,7 @@ const demoComments = [
 ]
 
 function buildDemoDashboard() {
-  const scores = [4.8, 4.6, 4.4, 4.7, 4.5]
+  const scores = [4.8, 4.6, 4.7, 4.5, 4.6, 4.4, 4.7, 4.5, 4.6, 4.8, 4.7]
   const tagSets = [
     { 负责: 15, 积极: 13, 沟通好: 11, 一般: 2, 不满意: 0 },
     { 负责: 14, 积极: 12, 沟通好: 15, 一般: 2, 不满意: 1 },
@@ -31,10 +37,10 @@ function buildDemoDashboard() {
     totalVoters: 18,
     officers: demoOfficers.map((officer, index) => ({
       ...officer,
-      averageScore: scores[index],
+      averageScore: scores[index] || 0,
       voteCount: 18,
-      tags: tagSets[index],
-      comments: demoComments[index].map((comment, commentIndex) => ({
+      tags: tagSets[index] || { 负责: 13, 积极: 12, 沟通好: 11, 一般: 2, 不满意: 0 },
+      comments: (demoComments[index] || []).map((comment, commentIndex) => ({
         id: `${officer.id}-${commentIndex}`,
         comment,
         score: commentIndex ? 4 : 5,

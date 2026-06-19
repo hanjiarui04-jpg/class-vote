@@ -6,9 +6,12 @@ create extension if not exists pgcrypto;
 create table if not exists public.officers (
   id uuid primary key default gen_random_uuid(),
   name text not null,
-  role text not null unique,
+  role text not null,
   sort_order integer not null default 0
 );
+
+alter table public.officers drop constraint if exists officers_role_key;
+create unique index if not exists officers_name_unique_idx on public.officers(name);
 
 create table if not exists public.reviews (
   id uuid primary key default gen_random_uuid(),
@@ -39,14 +42,26 @@ using (true);
 revoke all on table public.reviews from anon, authenticated;
 grant select on table public.officers to anon, authenticated;
 
+delete from public.officers
+where name not in (
+  '张鑫名', '李珂', '韩家锐', '刘广运', '赛依浦丁', '李超',
+  '祖拉雅提', '何晨', '热依莱', '帕热达', '王俊杰'
+);
+
 insert into public.officers (name, role, sort_order) values
-  ('林晓晴', '班长', 1),
-  ('周予安', '学习委员', 2),
-  ('陈嘉禾', '团支书', 3),
-  ('沈知夏', '生活委员', 4),
-  ('许明朗', '体育委员', 5)
-on conflict (role) do update set
-  name = excluded.name,
+  ('张鑫名', '班长', 1),
+  ('李珂', '团支书', 2),
+  ('韩家锐', '学习委员', 3),
+  ('刘广运', '组织委员', 4),
+  ('赛依浦丁', '体育委员', 5),
+  ('李超', '宣传委员', 6),
+  ('祖拉雅提', '生活委员', 7),
+  ('何晨', '信息委员', 8),
+  ('热依莱', '文艺委员', 9),
+  ('帕热达', '心理委员', 10),
+  ('王俊杰', '心理委员', 11)
+on conflict (name) do update set
+  role = excluded.role,
   sort_order = excluded.sort_order;
 
 -- 原子提交整张选票。即使清空 localStorage，数据库仍会按 anonymous_id 拒绝重复提交。

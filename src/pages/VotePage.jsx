@@ -126,7 +126,7 @@ export default function VotePage() {
             <article className="officer-card" key={officer.id}>
               <div className="officer-card-top">
                 <OfficerIdentity officer={officer} index={index} />
-                <span className="card-number">0{index + 1}</span>
+                <span className="card-number">{String(index + 1).padStart(2, '0')}</span>
               </div>
 
               {step === 0 && (

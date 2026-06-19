@@ -27,7 +27,7 @@ npm run dev
 ## 配置 Supabase
 
 1. 在 [Supabase](https://supabase.com/dashboard) 创建免费项目。面向中国大陆用户时，优先选择 Singapore 区域，并在目标校园网、移动和联通网络上实测。
-2. 打开项目的 **SQL Editor**，复制并执行 [`supabase/schema.sql`](./supabase/schema.sql)。它会创建表、索引、RLS、两个 RPC 和 5 条默认班干部数据。
+2. 打开项目的 **SQL Editor**，复制并执行 [`supabase/schema.sql`](./supabase/schema.sql)。它会创建表、索引、RLS、两个 RPC 和 11 条班干部数据。
 3. 在 **Project Settings → API** 复制 Project URL 与 anon/publishable key。
 4. 创建 `.env.local`：
 
@@ -83,4 +83,4 @@ npm run lint
 npm run build
 ```
 
-然后用真实部署域名完成一次投票，检查 Supabase 的 `reviews` 表是否新增 5 条记录，再验证同一浏览器无法重复提交。
+然后用真实部署域名完成一次投票，检查 Supabase 的 `reviews` 表是否新增 11 条记录，再验证同一浏览器无法重复提交。
