@@ -99,7 +99,7 @@ export async function submitBallot(reviews) {
 export async function fetchAdminDashboard(password) {
   if (isDemoMode) {
     await new Promise((resolve) => setTimeout(resolve, 450))
-    if (password !== 'admin123') throw new Error('密码不正确')
+    if (password !== '20252502') throw new Error('密码不正确')
     return buildDemoDashboard()
   }
 

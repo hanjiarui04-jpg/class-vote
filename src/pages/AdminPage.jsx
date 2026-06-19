@@ -40,7 +40,7 @@ function LoginPanel({ onLogin, loading, error }) {
           {loading && <LoaderCircle className="spin" size={18} />}{loading ? '验证中…' : '进入统计后台'}
         </button>
       </form>
-      <small>初始密码：admin123</small>
+      <small>管理密码请向班级管理员获取</small>
     </div>
   )
 }

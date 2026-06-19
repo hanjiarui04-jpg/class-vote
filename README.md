@@ -52,7 +52,7 @@ PostgreSQL 使用 snake_case，和需求字段对应如下：
 ### 修改名单与管理员密码
 
 - 名单：在 Supabase 的 Table Editor 中编辑 `officers`；保持 `sort_order` 唯一且连续体验最好。
-- 密码：在 `schema.sql` 的 `get_admin_dashboard` 函数中把 `admin123` 换成强密码，再单独执行该 `create or replace function` 语句。
+- 密码：在 `schema.sql` 的 `get_admin_dashboard` 函数中修改密码，再单独执行该 `create or replace function` 语句。不要在登录页面公开显示密码。
 
 当前的简单共享密码符合原始需求，但不等同于真正的管理员身份系统。若用于敏感或正式评议，建议升级为 Supabase Auth + 管理员角色，不在浏览器中传共享密码。
 

@@ -131,7 +131,7 @@ end;
 $$;
 
 -- 静态站点没有后端，因此后台通过带密码的数据库函数读取聚合结果。
--- 正式使用前，请把 admin123 改成你自己的强密码。
+-- 管理密码仅用于当前简易后台，正式敏感场景建议改用 Supabase Auth。
 create or replace function public.get_admin_dashboard(p_password text)
 returns jsonb
 language plpgsql
@@ -141,7 +141,7 @@ as $$
 declare
   result jsonb;
 begin
-  if p_password is distinct from 'admin123' then
+  if p_password is distinct from '20252502' then
     raise exception 'Invalid admin password';
   end if;
 
